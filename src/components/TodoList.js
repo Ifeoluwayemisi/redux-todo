@@ -6,7 +6,6 @@ function TodoList() {
     const {todos, filter} = useSelector(state => state);
 
     const filteredTodos = todos.filter((todo) => {
-        if (filter === "ALL") return true;
         if (filter === "COMPLETED") return todo.completed;
         if (filter === "ACTIVE") return !todo.completed;
         return true;

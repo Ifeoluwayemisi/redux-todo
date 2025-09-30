@@ -1,17 +1,22 @@
 import React from "react";
 import { useDispatch ,useSelector } from "react-redux";
 
-function FilterButton({ filterType, children }) {
+function FilterButton() {
     const dispatch = useDispatch();
-    const filter = useSelector(state => state.filter);
+    const filter = useSelector((state) => state.filter);
 
-    return  (
-        <div> 
-            {["ALL", "ACTIVE", "COMPLETED" ].map((f) => (
-                <button key={f} onClick={() => dispatch({type: "SET_FILTER", payload: f})}
-                style={{ fontWeight: filter === f? "bold": "normal"}} >{f}</button>
-             ))}
-        </div>
+    return (
+      <div className="filters">
+        {["ALL", "ACTIVE", "COMPLETED"].map((f) => (
+          <button
+            key={f}
+            className={filter === f ? "active" : ""}
+            onClick={() => dispatch({ type: "SET_FILTER", payload: f })}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
     );
 }
 

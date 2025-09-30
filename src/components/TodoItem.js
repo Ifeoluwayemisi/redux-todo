@@ -5,11 +5,21 @@ function TodoItem({ todo, index }) {
     const dispatch = useDispatch();
 
     return (
-        <li style={{ textDecoration: todo.completed ? "line-through" : "none"}}>
-            {todo.text}
-            <button onClick={() => dispatch({type: "TOGGLE_TODO", payload: index})}>Toggle</button>
-            <button onClick={() => dispatch({type: "DELETE_TODO", payload: index})}>Toggle</button>
-        </li>
+      <li className={todo.completed ? "completed" : ""}>
+        <span>{todo.text}</span>
+        <div>
+        <button
+          onClick={() => dispatch({ type: "TOGGLE_TODO", payload: index })}
+        >
+          Toggle
+        </button>
+        <button
+          onClick={() => dispatch({ type: "DELETE_TODO", payload: index })}
+        >
+          Delete
+        </button>
+        </div>
+      </li>
     );
 }
 
