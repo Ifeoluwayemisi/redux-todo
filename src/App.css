@@ -15,7 +15,8 @@ body {
   background: #1e1e2f;
   padding: 20px 30px;
   border-radius: 12px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
@@ -25,13 +26,20 @@ h1 {
   font-size: 24px;
 }
 
+.todo-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
 input {
-  width: 70%;
+  flex: 1;
   padding: 10px;
   border-radius: 6px;
   border: none;
-  margin-right: 10px;
   outline: none;
+  min-width: 0; /* prevents input overflow in flex */
 }
 
 button {
@@ -52,6 +60,7 @@ button:hover {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -63,6 +72,7 @@ li {
   justify-content: space-between;
   align-items: center;
   transition: 0.2s;
+  word-break: break-word; /* long text wraps nicely */
 }
 
 li.completed {
@@ -72,6 +82,7 @@ li.completed {
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
@@ -79,8 +90,45 @@ li.completed {
 
 .filters button {
   background: #444;
+  flex: 1; /* buttons stretch evenly on small screens */
+  min-width: 80px;
 }
 
 .filters button.active {
   background: #667eea;
+}
+
+/* ---------- Responsive Tweaks ---------- */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+    align-items: stretch;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .container {
+    padding: 15px 20px;
+    border-radius: 10px;
+  }
+
+  .todo-input {
+    flex-direction: column;
+  }
+
+  input, button {
+    width: 100%;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+
+  .filters button {
+    flex: 1;
+    font-size: 14px;
+    padding: 8px;
+  }
 }
